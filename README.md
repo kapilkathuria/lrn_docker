@@ -71,3 +71,38 @@ docker start container-id
 docker logs container-id --> see the log
 docker ps --> will show running container
 docker stop container-id
+
+* multi-command containers / running commands in containers
+docker exec -it container-id command
+ex. docker exec -it fb0f50de1d4e redis-cli
+
+-it argument: two flags -i and -t . -i means is to attach terminal and -t means show in pretty format
+
+* command prompt in containers
+docker exec -it container-id sh
+ex. docker exec -it fb0f50de1d4e sh
+
+other way
+docker run -it busybox sh
+
+## Creating containers
+we will be creating docker file
+docker file is passed to --> docker client --> docker server
+docker server creates docker image
+
+let's build docker imager for redis-server
+mkdir redis-image
+cd redis-image
+vi Dockerfile --> content of DockerFile   
+   # use an existind docker image as a base
+   FROM alpine 
+
+   # download and install  dependency
+   RUN apk add --update redis
+
+   # tell the image what to do on start
+   CMD ["redis-server"]
+
+docker build .
+
+
