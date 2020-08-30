@@ -21,3 +21,53 @@ Container: is intance of image
 * insall docker for windows or mac - - it contains
    * Docker client: tool we use
    * docker server: tools responsible for creating images, running containers etc.
+
+## Docker containers
+two use different version of software together, name spacing can be used. 
+
+another related feature is control group - this is used to limited amount of resources avaiable for separate namespace
+
+container: isolated part  - which can do everything  a normal software can do. it accesses system resources via os kernel still keeping isolation.
+specific software are avaialble within container
+
+it also has specific startup command.
+
+docker uses linux kernel.
+
+when we install docker, it install linux kernel.
+
+## Useful commands
+* Run a container
+docker run name-of-image
+docker run hello-world
+
+* overriding the command
+docker run name-of-image command
+ex. docker run name-of-image ls --> this will list all the folders/files
+
+default command in docker will not be used
+
+* list runningn containers
+docker ps
+docker ps --all --> shows all containers created
+
+* watch output from container
+docker start -a <image-id>
+
+* start container again
+docker ps --all
+docker start <id>  --> id can be seen from first command. it starts container again
+
+* remoivng stopped containers
+see all container
+docker system prune --> this will remove all containers
+
+* reteriving output logs
+docker logs container-id
+
+* stopping containers
+docker create busybox ping google.com
+docker start container-id
+docker logs container-id --> see the log
+docker ps --> will show running container
+docker stop container-id
