@@ -74,7 +74,9 @@ docker stop container-id
 
 * multi-command containers / running commands in containers
 docker exec -it container-id command
-ex. docker exec -it fb0f50de1d4e redis-cli
+ex. 
+docker run redis-server
+docker exec -it fb0f50de1d4e redis-cli
 
 -it argument: two flags -i and -t . -i means is to attach terminal and -t means show in pretty format
 
@@ -103,6 +105,8 @@ vi Dockerfile --> content of DockerFile
    # tell the image what to do on start
    CMD ["redis-server"]
 
-docker build .
+docker build . --> to build the docker container.  you will get container number
+docker run 40aa57c1e1ea --> run the container recently created
+
 
 
