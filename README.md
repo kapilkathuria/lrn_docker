@@ -87,6 +87,15 @@ ex. docker exec -it fb0f50de1d4e sh
 other way
 docker run -it busybox sh
 
+* giving name to docker image generated
+convention  is
+your-docker-id/project-name:version
+kapilkathuria/redis:v1.0
+
+docker -t kapilkathuria/redis:v1.0
+
+-t means tag
+
 ## Creating containers
 we will be creating docker file
 docker file is passed to --> docker client --> docker server
@@ -100,6 +109,7 @@ vi Dockerfile --> content of DockerFile
    FROM alpine 
 
    # download and install  dependency
+   # apk - is package manager on alpine to install packages
    RUN apk add --update redis
 
    # tell the image what to do on start
@@ -109,4 +119,26 @@ docker build . --> to build the docker container.  you will get container number
 docker run 40aa57c1e1ea --> run the container recently created
 
 
+## understanding docker file
+it's like installing a software or multiple software incuding os
+i.e. 
+1. downlad os and install
+2. download software and install
+3. do all required configurations
+
+## image caching
+docker server keeps image cache. for exammple if you  have used alpine image earlier, it won't download again rather it will use from existing local cache
+
+## changing existing docker file
+if there is no order change of commands in docker file, docker continue to use existing cache. though if there is change in order, docker generates image again. if you put your changes as down as possible, image creation time should be significant less 
+
+## generate image from container
+usually not expected to be done in project but useful to know
+
+
+docker run -it alpine sh  --> create container
+apk add --update redis --> install redis
+
+create a image from container
+docker commit -c 'CMD ["redis-server"]' 2cd40edc3919
 
