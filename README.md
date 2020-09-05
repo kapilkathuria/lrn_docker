@@ -142,3 +142,16 @@ apk add --update redis --> install redis
 create a image from container
 docker commit -c 'CMD ["redis-server"]' 2cd40edc3919
 
+## Docker image of node application
+take alpine image
+install dependency (npm install)
+start node application (npm start)
+
+note: FROM alpine - didn't had nodejs and npm and we  are using different image which has nodejs install. to find suitable image go to https://hub.docker.com/ 
+
+## port mapping
+by default all requests coming to given port are not forwarded to docker container and those need to specified in command line
+docker run -p 8080:8080 image
+
+docker run -p 3005:3005 kapilkathuria/simpleweb:latest
+
