@@ -155,3 +155,6 @@ docker run -p 8080:8080 image
 
 docker run -p 3005:3005 kapilkathuria/simpleweb:latest
 
+## working directory
+let's specify working directoy so that files are not copied in root
+WORKDIR /home/simpleweb

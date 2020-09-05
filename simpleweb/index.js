@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req,res) => {
-    res.send("Docker Container - HHelloo from node api server");
+    res.send("Docker Container - Hellossss from node api server");
 });
 
 
