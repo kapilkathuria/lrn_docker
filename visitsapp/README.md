@@ -30,3 +30,20 @@ services:
 docker run image --> docker-compose up
 
 docker build . && docker run image --> docker-compose up --build
+
+##  stopping with docker-compose
+docker-compose up -d --> run containers in background
+docker-compose down --> stop the contaiiners. run from same working directory wehre you have docker-compose.yml
+
+## containers maintainance
+1. restarting container which has crashed
+restart policies
+    "no": never start
+    always
+    on-failure
+    unless-stopped
+
+## container status
+docker-compose ps --> run from same working directory wehre you have docker-compose.yml
+
+

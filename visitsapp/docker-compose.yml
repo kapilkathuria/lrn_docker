@@ -4,6 +4,7 @@ services:
   redis-server:
     image: 'redis'
   visits-app:
+    restart: always
     build: .
     ports:
       - "4001:8081"
