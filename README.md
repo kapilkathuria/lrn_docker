@@ -1,5 +1,6 @@
 # lrn_docker
 Course: https://www.udemy.com/course/microservices-with-node-js-and-react/learn/lecture/19223580#overview
+Couse 2: https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide
 
 ## Why use docker
 makes software installtion easier and smooth
