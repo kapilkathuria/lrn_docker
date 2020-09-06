@@ -47,3 +47,24 @@ Note: above command worked for me (doker desktop with wsl2, ubunutu 18.04 runnin
 try this if above doesn't work
 winpty docker run -it -p 3000:3000 -v /home/frontend/node_modules -v "/$(pwd)":/home/frontend -e CHOKIDAR_USEPOLLING=true kapilkathuria/frontend:latest
 
+## Run tests within docker
+docker build -f dev.dockerfile .
+docker run -it 39f9b60eefcd npm run test
+
+if you make change to test cases, tests are not executed automatically within docker. to do this:
+* one way using below command:
+docker exec -it da5bb68a0da5 npm run test
+* second way is by adding one more service in docker-compose
+problem with this approach is, it isn't interactive.
+
+  frontend-tests:
+    build:
+      context: .
+      dockerfile: dev.dockerfile
+    volumes:
+      - /home/frontend/node_modules
+      - .:/home/frontend
+    command: ["npm", "run", "test"]
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
