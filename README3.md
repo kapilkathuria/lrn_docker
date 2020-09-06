@@ -68,3 +68,29 @@ problem with this approach is, it isn't interactive.
     environment:
       - CHOKIDAR_USEPOLLING=true
     stdin_open: true
+
+## build the application for prod
+we will use nginx (very popular and quite fast).
+
+what is requied in productin docker coontainer?
+remember we don't need dependencies in production
+1. use alpine
+2. run npm build
+3. use nginx
+3. start nginx
+
+### multistep build
+comment: as builder - means start of section - 1st section
+FROM node:alpine as builder
+WORKDIR /app
+COPY package.json .
+RUN npm install
+COPY ./ ./
+CMD ["npm", "run", "build"]
+
+comment: we haven't sepcifified 'as' -this is second section
+FROM nginx
+COPY --from=builder /app/build /use/share/nginx/html
+
+pls note, above didn't work for me. it open default nginx page rather than my app.
+

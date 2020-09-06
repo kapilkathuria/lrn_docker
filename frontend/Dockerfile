@@ -1,11 +1,11 @@
-FROM node:alpine
-
-WORKDIR /home/frontend
-
-COPY ./package.json ./
-
+# as builder - means start of section
+FROM node:alpine as builder
+WORKDIR /app
+COPY package.json .
 RUN npm install
-
 COPY ./ ./
+RUN npm run build
 
-CMD ["npm", "run", "start"]
+# we haven't sepcifified as
+FROM nginx
+COPY --from=builder /app/build /use/share/nginx/html
