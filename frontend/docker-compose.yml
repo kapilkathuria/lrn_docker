@@ -1,10 +1,10 @@
 version: '3'
 
 services:
- frontend-app:
+  frontend-app:
     build:
       context: .
-      dockerfile: dev.Dockerfile
+      dockerfile: dev.dockerfile
     ports:
       - "3000:3000"
     volumes:
@@ -13,4 +13,17 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     stdin_open: true
+      
+  frontend-tests:
+    build:
+      context: .
+      dockerfile: dev.dockerfile
+    volumes:
+      - /home/frontend/node_modules
+      - .:/home/frontend
+    command: ["npm", "run", "test"]
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+  
 
