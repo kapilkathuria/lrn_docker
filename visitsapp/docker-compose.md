@@ -31,6 +31,12 @@ docker run image --> docker-compose up
 
 docker build . && docker run image --> docker-compose up --build
 
+## 
+To rebuild  image you must use 
+docker-compose build 
+or 
+docker-compose up --build
+
 ##  stopping with docker-compose
 docker-compose up -d --> run containers in background
 docker-compose down --> stop the contaiiners. run from same working directory wehre you have docker-compose.yml
